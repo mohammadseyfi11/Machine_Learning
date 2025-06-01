@@ -1,0 +1,15 @@
+# Core libraries for data manipulation and numerical operations
+pandas
+numpy
+
+# Libraries for data visualization
+matplotlib
+seaborn
+
+# Scikit-learn for machine learning tasks
+scikit-learn
+
+# Gradient Boosting libraries
+lightgbm
+xgboost
+
