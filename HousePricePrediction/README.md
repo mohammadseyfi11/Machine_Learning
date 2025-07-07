@@ -1,96 +1,84 @@
-# House Price Prediction - README
+# House Price Prediction Project
 
-## Project Overview
+## Overview
 
-This project focuses on predicting house prices using advanced regression techniques. The dataset used is from the Ames Housing Dataset, which contains a comprehensive set of features describing residential homes in Ames, Iowa.
+This project demonstrates a machine learning model for predicting house prices based on various features such as area, number of bedrooms, location, and other structural and qualitative attributes. The dataset used contains 1460 samples with over 80 features describing different aspects of residential homes in Ames, Iowa.
 
-The goal is to build a robust model that accurately predicts the final sale price of a home based on its attributes.
+## Features
 
-## Files Included
+The dataset includes a wide variety of features such as:
+- Lot size
+- Number of bedrooms and bathrooms
+- Square footage of living areas
+- Year built and last renovated
+- Garage size and quality
+- Basement condition and finish type
+- Roof style and material
+- Exterior quality
+- Sale type and condition
+- And many more (see full list in data description)
 
-- House_Price_Prediction_Colab.ipynb – Main Jupyter notebook containing data preprocessing, exploratory data analysis (EDA), feature engineering, and modeling.
-- train.csv – Training dataset provided by Kaggle.
-- test.csv – Test dataset for which predictions are to be made.
-- AmesHousing.csv – Alternative version of the dataset used for training.
-- README.txt – This file.
+## Target Variable
 
-## Features Used
+- **SalePrice**: The final sale price of the house (in USD)
 
-The dataset includes over 80 features covering various aspects of residential houses, including:
-
-- Location: Neighborhood, Zoning
-- Structure: Number of rooms, basement type, roof type, foundation
-- Condition & Quality: Overall quality, overall condition, exterior condition
-- Size: Lot area, living area, basement square footage
-- Age: Year built, year remodeled
-- Utilities & Amenities: Type of utilities, presence of fireplace, garage, pool, etc.
-
-## Technologies & Libraries Used
+## Librairess Used
 
 - Python
-- Pandas – For data manipulation
-- NumPy – For numerical operations
-- Seaborn / Matplotlib – For data visualization
-- Scikit-learn – For machine learning models and evaluation metrics
-- XGBoost, LightGBM, CatBoost, Gradient Boosting – Advanced gradient boosting algorithms
-- Statsmodels – For statistical testing
-- KNeighborsRegressor – KNN-based imputation for missing values
+- Pandas
+- NumPy
+- Matplotlib & Seaborn (for visualization)
+- Scikit-learn (for preprocessing and evaluation)
+- LightGBM (Light Gradient Boosting Machine)
+- TensorFlow / Keras (optional deep learning components)
+- Streamlit (for web application interface)
 
-## Exploratory Data Analysis (EDA)
+## Key Steps in the Workflow
 
-- Distribution of SalePrice: Visualized against normal distribution; log transformation applied due to skewness.
-- Correlation Matrix: Identified top correlated features like OverallQual, GrLivArea, and TotalBsmtSF.
-- Categorical vs SalePrice Plots: Box plots, violin plots, and strip plots used to understand relationships between categorical variables and target.
+1. **Data Loading & Inspection**
+   - Loaded the dataset using Pandas.
+   - Checked for missing values and explored basic statistics.
+   - Displayed first few rows to understand structure.
 
-## Data Preprocessing
+2. **Exploratory Data Analysis (EDA)**
+   - Visualized feature distributions.
+   - Identified key relationships between house features and sale prices.
+   - Analyzed categorical and numerical variables separately.
 
-- Handling Missing Values:
-  - Removed features with high percentage of missing values (e.g., PoolQC, MiscFeature)
-  - Imputed missing values for categorical features with 'None' or mode
-  - Used KNN Regressor for numerical missing value imputation
-- Feature Engineering:
-  - Created new features like Total_Bathrooms, Total_Home_Quality, HighQualSF
-- Encoding:
-  - One-hot encoding applied to categorical features
-- Normalization:
-  - Log transformation applied to skewed numeric features
-  - Target variable (SalePrice) also log-transformed
+3. **Data Preprocessing**
+   - Handled missing values by imputation or removal.
+   - Encoded categorical features using one-hot encoding or label encoding.
+   - Scaled or normalized numerical features if necessary.
 
-## Modeling
+4. **Feature Engineering**
+   - Created new features from existing ones (e.g., total square footage).
+   - Transformed skewed features using log transformation.
+   - Selected important features based on correlation or domain knowledge.
 
-Multiple regression models were evaluated using 5-fold cross-validation:
+5. **Model Training**
+   - Trained a **LightGBM Regressor**, which is effective for tabular data.
+   - Tuned hyperparameters for better performance.
+   - Evaluated the model using metrics like Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and R² score.
 
-| Model                  | RMSE (CV Mean) | RMSE (CV Std) |
-|------------------------|----------------|---------------|
-| Linear Regression      | 0.1399         | 0.0088        |
-| Bayesian Ridge         | 0.1228         | 0.0129        |
-| LGBM Regressor         | 0.1252         | 0.0113        |
-| Support Vector Regressor | 0.2712       | 0.0148        |
-| Decision Tree          | 0.2021         | 0.0098        |
-| Random Forest          | 0.1374         | 0.0121        |
-| XGBoost                | 0.1320         | 0.0118        |
-| Gradient Boosting      | 0.1257         | 0.0116        |
-| CatBoost               | 0.1148         | 0.0150        |
-| Stacked Regressor      | 0.1172         | 0.0151        |
+6. **Optional Deep Learning Model**
+   - Built a simple neural network using TensorFlow/Keras.
+   - Explored training dynamics and loss curves.
 
-### Best Performing Model: CatBoost Regressor
+7. **Web Application (Streamlit)**
+   - Developed an interactive web app using Streamlit to deploy the model.
+   - Allowed users to input house features and get predicted prices.
 
-- Achieved lowest RMSE score of 0.0961 on validation set
-- Feature importance extracted showing key drivers of house prices
+## Results
 
-## Results Visualization
+- The LightGBM model performed well, capturing trends in the housing market.
+- Feature importance plots helped identify the most influential predictors (e.g., overall quality, living area).
+- Optional deep learning models showed potential but were not fully optimized.
 
-- QQ-plots and histograms to assess normality
-- Heatmap of correlation matrix
-- Bar plots comparing RMSE across different models
-- Feature importance plot from CatBoost
+## How to Run the Application
 
-## Future Improvements
+### Prerequisites
 
-- Explore more sophisticated stacking methods
-- Hyperparameter tuning via GridSearch or Bayesian Optimization
-- Incorporate external datasets (e.g., economic indicators, school ratings)
-- Try deep learning approaches with TensorFlow/Keras
+Ensure Python 3.x is installed. Install required packages:
 
-
-Thank you for checking this project! 🏡📈
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn lightgbm tensorflow streamlit
