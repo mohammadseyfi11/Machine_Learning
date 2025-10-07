@@ -1,0 +1,20 @@
+# Core scientific stack
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.13.1
+
+# Visualization
+matplotlib==3.9.2
+seaborn==0.13.2
+
+# Machine Learning
+scikit-learn==1.5.2
+
+# Jupyter (for running notebooks)
+jupyter==1.0.0
+notebook==7.2.2
+ipykernel==6.29.5
+
+# Kaggle API (if you want to fetch datasets directly)
+kaggle==1.6.14
+
